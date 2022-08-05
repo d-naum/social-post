@@ -46,6 +46,7 @@ export const action: ActionFunction = async ({ request }) => {
   await createPost({
     title: result.data.title ?? null,
     body: result.data.body,
+    authorId:"bad-id"
   });
 
   return redirect("/");
@@ -71,7 +72,7 @@ export default function Index() {
       <ul>
         {posts.map((post) => (
           <li key={post.title}>
-            <PostComponent header={post.title} children={post.body} />
+            <PostComponent header={post.title} children={post.body} authorName={post.author?.email} />
           </li>
         ))}
       </ul>
